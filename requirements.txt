@@ -1,0 +1,22 @@
+beautifulsoup4~=4.9
+biopython~=1.78
+boto3
+click~=7.1
+-e ./module
+ipython~=7.18
+joblib~=0.16
+matplotlib~=3.3
+numpy~=1.19
+pandas~=1.1
+PyYAML~=5.3
+regex~=2020.10
+requests
+scikit-learn==0.23.2
+scipy~=1.5
+tensorboard==2.3.0
+tokenizers==0.9.2
+torch==1.6.0
+tqdm
+transformers==3.4.0
+urllib3
+wget
