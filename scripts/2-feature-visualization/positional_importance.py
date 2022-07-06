@@ -4,9 +4,9 @@ import pandas as pd
 import torch
 import click
 
-from inari import config, utils, dataio, metrics
-from inari import transformers as tr
-from inari import visualization as vis
+from florabert import config, utils, dataio, metrics
+from florabert import transformers as tr
+from florabert import visualization as vis
 
 
 MODEL_PATH = config.models / "transformer" / "full-dataset" / "checkpoint-9500"

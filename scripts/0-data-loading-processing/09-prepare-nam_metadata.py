@@ -3,7 +3,7 @@ import re
 
 import pandas as pd
 
-from inari import config
+from florabert import config
 
 
 def prepare_col(col):

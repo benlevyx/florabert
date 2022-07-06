@@ -14,19 +14,22 @@
 import pickle
 import pandas as pd
 import numpy as np
-from inari import config
+from florabert import config
 from tqdm import tqdm
 
 np.random.seed(47)
 
 # Global Vars
-TRAIN_SIZE = config.settings['TRAIN_SIZE']
+TRAIN_SIZE = config.settings["TRAIN_SIZE"]
+
 
 def main():
     # Read in the cluster tsv
     print("Reading clustered data")
-    cluster_path = config.data_processed / 'combined' / 'clustered' / 'maize_nam.csv_cluster.tsv'
-    cluster_df = pd.read_csv(cluster_path, sep='\t', header=None)
+    cluster_path = (
+        config.data_processed / "combined" / "clustered" / "maize_nam.csv_cluster.tsv"
+    )
+    cluster_df = pd.read_csv(cluster_path, sep="\t", header=None)
 
     # Compile the clusters into a dict
     print("compiling clusters into a dict")
@@ -44,36 +47,41 @@ def main():
 
     # Create the storage for data foles
     folds = 5
-    data_folds = {f"train_{i}":[] for i in range(folds)}
-    data_folds['test'] = []
+    data_folds = {f"train_{i}": [] for i in range(folds)}
+    data_folds["test"] = []
 
     # Create the test set
-    test_len = (1-TRAIN_SIZE) * len(cluster_df[1])
+    test_len = (1 - TRAIN_SIZE) * len(cluster_df[1])
     train_start_id = 0
     for i, ref in enumerate(ref_rand):
-        data_folds['test'].extend(ref_dict[ref])
-        if len(data_folds['test']) >= test_len:
+        data_folds["test"].extend(ref_dict[ref])
+        if len(data_folds["test"]) >= test_len:
             train_start_id = i + 1
             break
 
     # Create the 5 fold for train sets
     for i, ref in enumerate(ref_rand[train_start_id:]):
         data_folds[f"train_{i % folds}"].extend(ref_dict[ref])
-    print("Length of each fold:", [(k, len(v)) for k,v in data_folds.items()])
+    print("Length of each fold:", [(k, len(v)) for k, v in data_folds.items()])
 
     # Sanity checks
     all_seq = []
     for v in data_folds.values():
         all_seq.extend(v)
-    assert sum([len(v) for v in data_folds.values()]) == sum([len(v) for v in ref_dict.values()]) == len(all_seq)
+    assert (
+        sum([len(v) for v in data_folds.values()])
+        == sum([len(v) for v in ref_dict.values()])
+        == len(all_seq)
+    )
 
     # Save the folds to dict
-    save_path = config.data_final / 'nam_data' / "gene_data_folds.pkl"
-    with open(str(save_path), 'wb') as pfile:
+    save_path = config.data_final / "nam_data" / "gene_data_folds.pkl"
+    with open(str(save_path), "wb") as pfile:
         pickle.dump(data_folds, pfile, protocol=pickle.HIGHEST_PROTOCOL)
-    with open(str(save_path), 'rb') as pfile:
+    with open(str(save_path), "rb") as pfile:
         reloaded = pickle.load(pfile)
     assert sum([len(v) for v in reloaded.values()]) == len(all_seq)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

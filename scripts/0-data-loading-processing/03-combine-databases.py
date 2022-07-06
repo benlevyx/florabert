@@ -11,7 +11,7 @@
 """
 import os
 import pandas as pd
-from inari import config
+from florabert import config
 from Bio import SeqIO
 from tqdm import tqdm
 

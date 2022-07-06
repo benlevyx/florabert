@@ -8,8 +8,8 @@ from ray import tune
 from ray.tune.schedulers import AsyncHyperBandScheduler
 from ray.tune.suggest.hyperopt import HyperOptSearch
 
-from inari import config, utils, training, dataio
-from inari import transformers as tr
+from florabert import config, utils, training, dataio
+from florabert import transformers as tr
 
 
 DATA_DIR = config.data_final / "transformer" / "genex" / "nam"

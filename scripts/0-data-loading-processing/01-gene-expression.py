@@ -1,4 +1,4 @@
-from inari import config
+from florabert import config
 import pandas as pd
 
 

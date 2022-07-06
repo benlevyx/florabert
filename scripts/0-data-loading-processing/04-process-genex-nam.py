@@ -21,7 +21,7 @@ from tqdm import tqdm
 import numpy as np
 from Bio import SeqIO
 
-from inari import config, utils, dataio
+from florabert import config, utils, dataio
 
 
 tqdm.pandas()

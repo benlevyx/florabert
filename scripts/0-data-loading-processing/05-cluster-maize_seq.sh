@@ -10,7 +10,7 @@
 #            Note: use clustered/maize_nam.csv_cluster.tsv file for creating train/test split.
 
 if [ -z "$1" ]; then
-    ROOT="$(python -c 'from inari import config; print(config.data_processed)')"
+    ROOT="$(python -c 'from florabert import config; print(config.data_processed)')"
     INPUT_FILE="${ROOT}/combined/maize_nam.csv"
 else
     INPUT_FILE="$1"

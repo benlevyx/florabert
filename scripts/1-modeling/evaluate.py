@@ -1,13 +1,13 @@
-"""Performance of CornBERT overall and disaggregated by tissue.
+"""Performance of FLORABERT overall and disaggregated by tissue.
 """
 import torch
 from datasets import Dataset
 import pandas as pd
 import numpy as np
 
-from inari import config, utils, metrics, dataio
-from inari import transformers as tr
-from inari import visualization as vis
+from florabert import config, utils, metrics, dataio
+from florabert import transformers as tr
+from florabert import visualization as vis
 
 
 TOKENIZER_DIR = config.models / "byte-level-bpe-tokenizer"
@@ -138,7 +138,7 @@ def main():
     print("Evaluating")
     results = metrics.evaluate_model(trg_true, trg_pred, metric_fns)
     df = package_metrics(results, metric_names)
-    utils.save_model_performance(df, "cornbert")
+    utils.save_model_performance(df, "florabert")
 
     print("Creating scatterplot")
     vis.scatter_genex_predictions(

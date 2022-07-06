@@ -16,7 +16,7 @@ import click
 import torch
 import pandas as pd
 
-from inari import config, utils, transformers as tr, dataio, metrics
+from florabert import config, utils, transformers as tr, dataio, metrics
 
 
 MODEL_PATH = config.models / "transformer" / "b73-included" / "checkpoint-9000"

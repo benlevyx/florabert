@@ -6,7 +6,7 @@ from pathlib import Path, PosixPath
 import logging
 
 import click
-from inari.nlp import get_kmer_counts
+from florabert.nlp import get_kmer_counts
 import numpy as np
 import pandas as pd
 import dask.dataframe as dd
@@ -15,8 +15,8 @@ import tensorboard as tb
 # Hack to avoid embedding writer error
 import tensorflow as tf
 import torch
-from inari import config, utils
-from inari import transformers as tr
+from florabert import config, utils
+from florabert import transformers as tr
 from tqdm import tqdm
 
 tf.io.gfile = tb.compat.tensorflow_stub.io.gfile
